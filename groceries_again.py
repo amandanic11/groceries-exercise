@@ -27,15 +27,33 @@ products = [
 
 # print(products)
 # pprint(products)
+#PRODUCTS
 
 def to_usd(my_price):
     return f"${my_price:,.2f}"
 # TODO: write some Python code here to produce the desired output
 print("----------------")
-print("NUMBER OF PRODUCTS", len(products))
+print("NUMBER OF PRODUCTS:", len(products))
 print("----------------")
+
+#SORTING PRODUCTS
+#sorted_products = sorted(products, key=operator.itemgetter("name"))
+
 
 for x in products:
     #print(x["name"] + "(" + str["price"] + ")")
     price_usd = to_usd(x["price"])
-    print(f" + {x['name']} {price_usd}")
+    print(f" + {x['name']} ({price_usd})")
+
+#DEPARTMENTS
+departments = []
+
+for x in products:
+    departments.append(x["department"])
+
+print("----------------")
+print("NUMBER OF DEPARTMENTS:", len(departments))
+print("----------------")
+
+for dept_name in departments:
+    print(dept_name)
