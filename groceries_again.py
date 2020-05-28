@@ -1,5 +1,7 @@
 # groceries.py
 
+import operator
+
 #from pprint import pprint
 
 products = [
@@ -29,6 +31,12 @@ products = [
 # pprint(products)
 #PRODUCTS
 
+# example_department_name = "snacks"
+# matching_products = [x for x in products if x["department" == example_department_name]]
+# print(matching_products)
+
+# exit()
+
 def to_usd(my_price):
     return f"${my_price:,.2f}"
 # TODO: write some Python code here to produce the desired output
@@ -37,7 +45,7 @@ print("NUMBER OF PRODUCTS:", len(products))
 print("----------------")
 
 #SORTING PRODUCTS
-#sorted_products = sorted(products, key=operator.itemgetter("name"))
+sorted_products = sorted(products, key=operator.itemgetter("name"))
 
 
 for x in products:
@@ -49,11 +57,17 @@ for x in products:
 departments = []
 
 for x in products:
-    departments.append(x["department"])
+    if x["department"] not in departments:
+        departments.append(x["department"])
 
 print("----------------")
 print("NUMBER OF DEPARTMENTS:", len(departments))
 print("----------------")
 
+departments = sorted(departments)
+
+
 for dept_name in departments:
-    print(dept_name)
+    matching_products = [x for x in products if x["department"] == dept_name]
+    matching_products_count = len(matching_products)
+    print(f"{dept_name.title()} ({matching_products_count} products)")
