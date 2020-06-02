@@ -2,20 +2,19 @@
 
 #from pprint import pprint
 #TODO Assemble a new products variable by pulling from CSV file
-import csv
+import pandas
+csv_filepath = "products.csv"
+df = pandas.read_csv(csv_filepath)
 
-products = []
+#todo: assemble a list of dictionaries
 
-csv_filepath = "products.csv" # a relative filepath
-with open(csv_filepath, "r") as csv_file: # "r" means "open the file for reading"
-    reader = csv.DictReader(csv_file) # assuming your CSV has headers
-    for row in reader:
-        # print(type(row)) #> <class 'collections.OrderedDict'>
-        #print(type(row), row["id"], row["name"], row["price"])
-        #products.append(row) #> gives us price values as string
-        row["price"] = float(row["price"]) # change the price from string to float
-        products.append(row)
+#Approach A
+# products = []
+# for row in _____: #how to loop through each row in a dataframe
+#     products.append({}) #how to convert each row to a dictionary
 
+#Approach B
+products = df.to_dict("records")
 
 # products = [
 #     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
