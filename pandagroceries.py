@@ -1,10 +1,24 @@
 # groceries.py
 
-#from pprint import pprint
 #TODO Assemble a new products variable by pulling from CSV file
 import pandas
-csv_filepath = "products.csv"
+import os
+
+#csv_filepath = "data/products.csv"
+csv_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "products.csv")
 df = pandas.read_csv(csv_filepath)
+print(type(df)) #> <class 'pandas.core.frame.DataFrame'>
+print(df.head()) #> prints first few rows
+products = df.to_dict("records")
+
+#os.path.dirname(__file__) #references current file / where we are right now
+#".." #in current directory
+#"data" #goes into the data directory
+
+
+#csv_filepath = "data/products.csv"
+# df = pandas.read_csv(csv_filepath)
+# print(df.head())
 
 #todo: assemble a list of dictionaries
 
@@ -14,7 +28,9 @@ df = pandas.read_csv(csv_filepath)
 #     products.append({}) #how to convert each row to a dictionary
 
 #Approach B
-products = df.to_dict("records")
+# products = df.to_dict("records")
+
+exit()
 
 # products = [
 #     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
